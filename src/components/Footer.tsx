@@ -17,13 +17,13 @@ const Footer: React.FC = () => {
               Your one-stop shop for quality essentials at affordable prices.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-500 hover:text-primary">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary">
                 <Instagram size={20} />
               </a>
             </div>
@@ -43,17 +43,17 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/new-arrivals" className="text-gray-500 hover:text-primary">
+                <Link to="/products?new=true" className="text-gray-500 hover:text-primary">
                   New Arrivals
                 </Link>
               </li>
               <li>
-                <Link to="/featured" className="text-gray-500 hover:text-primary">
+                <Link to="/products?featured=true" className="text-gray-500 hover:text-primary">
                   Featured
                 </Link>
               </li>
               <li>
-                <Link to="/sale" className="text-gray-500 hover:text-primary">
+                <Link to="/products?sale=true" className="text-gray-500 hover:text-primary">
                   Sale
                 </Link>
               </li>
