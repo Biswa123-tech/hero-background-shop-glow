@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
@@ -16,14 +16,17 @@ const Footer: React.FC = () => {
               Your one-stop shop for quality essentials at affordable prices.
             </p>
             <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary">
+              <a href="https://www.facebook.com/share/1FQuDBQjP9/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary">
                 <Facebook size={20} />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary">
-                <Twitter size={20} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary">
+              <a href="https://www.instagram.com/vegamart.v.m?igsh=MWplMzhkc2RzMmtseQ==" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary">
                 <Instagram size={20} />
+              </a>
+              <a href="https://x.com/Vegamart_V_M?t=TRL4QEUgkbcOFg6-1H1ktQ&s=09" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x">
+                  <path d="M18 6 6 18"/>
+                  <path d="m6 6 12 12"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -63,7 +66,7 @@ const Footer: React.FC = () => {
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">Account</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/account" className="text-gray-500 hover:text-primary">
+                <Link to="/login" className="text-gray-500 hover:text-primary">
                   My Account
                 </Link>
               </li>
@@ -96,11 +99,15 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <Phone size={18} className="mr-2 text-primary" />
-                <span className="text-gray-500">+91 99999 12345</span>
+                <a href="tel:+917086542223" className="text-gray-500 hover:text-primary">
+                  +91 7086542223
+                </a>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="mr-2 text-primary" />
-                <span className="text-gray-500">contact@messbuy.com</span>
+                <a href="mailto:vb46667@gmail.com" className="text-gray-500 hover:text-primary">
+                  vb46667@gmail.com
+                </a>
               </li>
             </ul>
           </div>

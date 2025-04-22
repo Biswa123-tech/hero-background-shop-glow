@@ -5,6 +5,7 @@ import { ShoppingCart, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { toast } from "@/hooks/use-toast";
 
 export interface ProductCardProps {
   id: number;
@@ -14,6 +15,7 @@ export interface ProductCardProps {
   image: string;
   category: string;
   badge?: "sale" | "new" | "popular";
+  discount?: number;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -24,7 +26,60 @@ const ProductCard: React.FC<ProductCardProps> = ({
   image,
   category,
   badge,
+  discount,
 }) => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Check if user is logged in
+    const isLoggedIn = localStorage.getItem("auth_token");
+    
+    if (!isLoggedIn) {
+      toast({
+        title: "Please sign in",
+        description: "You need to be signed in to add items to your cart",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Get existing cart items from localStorage
+    const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+    
+    // Check if item already exists in cart
+    const existingItemIndex = cartItems.findIndex((item: any) => item.id === id);
+    
+    if (existingItemIndex >= 0) {
+      // Increment quantity if item exists
+      cartItems[existingItemIndex].quantity += 1;
+    } else {
+      // Add new item to cart
+      cartItems.push({
+        id,
+        name,
+        price,
+        originalPrice,
+        image,
+        category,
+        quantity: 1,
+      });
+    }
+    
+    // Save updated cart items to localStorage
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    
+    toast({
+      title: "Item added to cart",
+      description: `${name} has been added to your cart.`,
+    });
+  };
+
+  // Calculate discount percentage if not provided
+  const discountPercentage = discount || (originalPrice 
+    ? Math.round(((originalPrice - price) / originalPrice) * 100) 
+    : 0);
+
   return (
     <motion.div 
       className="group rounded-lg border overflow-hidden bg-white h-full flex flex-col"
@@ -47,6 +102,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
               {badge === "popular" && "Popular"}
             </Badge>
           )}
+          {discountPercentage > 0 && !badge && (
+            <Badge variant="sale">
+              {discountPercentage}% Off
+            </Badge>
+          )}
         </div>
         <div className="absolute top-2 right-2">
           <Button
@@ -55,6 +115,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
             className="bg-white/80 backdrop-blur-sm hover:bg-white"
           >
             <Heart size={18} className="text-gray-600" />
+          </Button>
+        </div>
+        
+        {/* Hover overlay with Add to Cart button */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <Button 
+            onClick={handleAddToCart}
+            className="bg-white text-black hover:bg-primary hover:text-white transition-colors"
+          >
+            Add to Cart
           </Button>
         </div>
       </div>
@@ -77,16 +147,19 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 ₹{originalPrice.toLocaleString("en-IN")}
               </span>
             )}
+            {discountPercentage > 0 && (
+              <span className="text-xs text-green-600">
+                {discountPercentage}% off
+              </span>
+            )}
           </div>
           <Button
             variant="ghost"
             size="icon"
             className="h-8 w-8 rounded-full bg-gray-100 hover:bg-primary hover:text-white"
-            asChild
+            onClick={handleAddToCart}
           >
-            <Link to={`/products/${id}`}>
-              <ShoppingCart size={16} />
-            </Link>
+            <ShoppingCart size={16} />
           </Button>
         </div>
       </div>
