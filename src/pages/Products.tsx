@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import ProductCard from "@/components/ProductCard";
@@ -6,120 +7,272 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-// Daily essentials categories/products in Rupees
+// Daily essentials from Indian FMCG brands in Rupees
 const PRODUCTS = [
+  // Patanjali Products
   {
     id: 1,
-    name: "Tooth Brush",
-    price: 40,
-    originalPrice: 60,
+    name: "Patanjali Dant Kanti Toothpaste",
+    price: 100,
+    originalPrice: 120,
     image: "https://images.unsplash.com/photo-1559163525-fd82e738ad5b?q=80&w=1170&auto=format&fit=crop",
-    category: "Brushes",
+    category: "Personal Hygiene & Grooming",
+    brand: "Patanjali",
     badge: "sale" as "sale",
-    discount: 33
-  },
-  {
-    id: 2,
-    name: "Face Cream",
-    price: 399,
-    originalPrice: 499,
-    image: "https://images.unsplash.com/photo-1620916566886-f294219736cd?q=80&w=987&auto=format&fit=crop",
-    category: "Cream",
-    badge: "new" as "new",
-    discount: 20
-  },
-  {
-    id: 3,
-    name: "Vitamin C Serum",
-    price: 799,
-    originalPrice: 999,
-    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
-    category: "Serum",
-    badge: "sale" as "sale",
-    discount: 20
-  },
-  {
-    id: 4,
-    name: "Coconut Oil",
-    price: 199,
-    originalPrice: 249,
-    image: "https://images.unsplash.com/photo-1528483667811-f9838f3df371?q=80&w=974&auto=format&fit=crop",
-    category: "Oil",
-    badge: "popular" as "popular",
-    discount: 20
-  },
-  {
-    id: 5,
-    name: "Biscuits Pack",
-    price: 60,
-    originalPrice: 75,
-    image: "https://images.unsplash.com/photo-1583743089315-5e59e0afbcd6?q=80&w=987&auto=format&fit=crop",
-    category: "Eatables",
-    discount: 20
-  },
-  {
-    id: 6,
-    name: "Tea Pack",
-    price: 160,
-    originalPrice: 199,
-    image: "https://images.unsplash.com/photo-1550610939-14e048be2171?q=80&w=987&auto=format&fit=crop",
-    category: "Eatables",
-    discount: 20
-  },
-  {
-    id: 7,
-    name: "Soap",
-    price: 45,
-    originalPrice: 60,
-    image: "https://images.unsplash.com/photo-1607006483570-47ef11ec4ce1?q=80&w=987&auto=format&fit=crop",
-    category: "Soap",
-    discount: 25
-  },
-  {
-    id: 8,
-    name: "Shampoo",
-    price: 180,
-    originalPrice: 225,
-    image: "https://images.unsplash.com/photo-1597854586415-9cf5ef699899?q=80&w=987&auto=format&fit=crop",
-    category: "Shampoo",
-    discount: 20
-  },
-  {
-    id: 9,
-    name: "Body Lotion",
-    price: 220,
-    originalPrice: 275,
-    image: "https://images.unsplash.com/photo-1619451334981-e66ed2dded8e?q=80&w=987&auto=format&fit=crop",
-    category: "Cream",
-    discount: 20
-  },
-  {
-    id: 10,
-    name: "Hand Sanitizer",
-    price: 85,
-    originalPrice: 100,
-    image: "https://images.unsplash.com/photo-1584267385494-9fdd9a71ad75?q=80&w=987&auto=format&fit=crop",
-    category: "Hygiene",
-    discount: 15
-  },
-  {
-    id: 11,
-    name: "Hair Oil",
-    price: 150,
-    originalPrice: 180,
-    image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=987&auto=format&fit=crop",
-    category: "Oil",
     discount: 17
   },
   {
+    id: 2,
+    name: "Patanjali Kesh Kanti Hair Oil",
+    price: 130,
+    originalPrice: 150,
+    image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=987&auto=format&fit=crop",
+    category: "Personal Hygiene & Grooming",
+    brand: "Patanjali",
+    discount: 13
+  },
+  {
+    id: 3,
+    name: "Patanjali Aloe Vera Gel",
+    price: 180,
+    originalPrice: 220,
+    image: "https://images.unsplash.com/photo-1620916566886-f294219736cd?q=80&w=987&auto=format&fit=crop",
+    category: "Skincare",
+    brand: "Patanjali",
+    badge: "popular" as "popular",
+    discount: 18
+  },
+  
+  // Dabur Products
+  {
+    id: 4,
+    name: "Dabur Amla Hair Oil",
+    price: 175,
+    originalPrice: 210,
+    image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=987&auto=format&fit=crop",
+    category: "Personal Hygiene & Grooming",
+    brand: "Dabur",
+    discount: 17
+  },
+  {
+    id: 5,
+    name: "Dabur Red Toothpaste",
+    price: 99,
+    originalPrice: 120,
+    image: "https://images.unsplash.com/photo-1559163525-fd82e738ad5b?q=80&w=1170&auto=format&fit=crop",
+    category: "Personal Hygiene & Grooming",
+    brand: "Dabur",
+    badge: "sale" as "sale",
+    discount: 18
+  },
+  {
+    id: 6,
+    name: "Dabur Honey",
+    price: 220,
+    originalPrice: 250,
+    image: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Dabur",
+    discount: 12
+  },
+  
+  // Nestlé Products
+  {
+    id: 7,
+    name: "Nescafé Classic Coffee",
+    price: 290,
+    originalPrice: 325,
+    image: "https://images.unsplash.com/photo-1550611087-ee349c7ffc98?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Nestlé",
+    discount: 11
+  },
+  {
+    id: 8,
+    name: "Maggi Noodles",
+    price: 60,
+    originalPrice: 72,
+    image: "https://images.unsplash.com/photo-1605349179255-03c8cbbafa6e?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Nestlé",
+    badge: "popular" as "popular",
+    discount: 17
+  },
+  {
+    id: 9,
+    name: "Nestlé KitKat",
+    price: 40,
+    originalPrice: 50,
+    image: "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Nestlé",
+    discount: 20
+  },
+  
+  // Parle Products
+  {
+    id: 10,
+    name: "Parle-G Biscuits",
+    price: 25,
+    originalPrice: 30,
+    image: "https://images.unsplash.com/photo-1583743089315-5e59e0afbcd6?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Parle",
+    badge: "popular" as "popular",
+    discount: 17
+  },
+  {
+    id: 11,
+    name: "Parle Monaco Biscuits",
+    price: 30,
+    originalPrice: 35,
+    image: "https://images.unsplash.com/photo-1583743089315-5e59e0afbcd6?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Parle",
+    discount: 14
+  },
+  
+  // Himalaya Products
+  {
     id: 12,
-    name: "Sunscreen",
-    price: 350,
-    originalPrice: 450,
-    image: "https://images.unsplash.com/photo-1598228812664-8280178581ed?q=80&w=987&auto=format&fit=crop",
-    category: "Cream",
+    name: "Himalaya Neem Face Wash",
+    price: 180,
+    originalPrice: 215,
+    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
+    category: "Skincare",
+    brand: "Himalaya",
+    badge: "sale" as "sale",
+    discount: 16
+  },
+  {
+    id: 13,
+    name: "Himalaya Face Scrub",
+    price: 190,
+    originalPrice: 225,
+    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
+    category: "Skincare",
+    brand: "Himalaya",
+    discount: 16
+  },
+  {
+    id: 14,
+    name: "Himalaya Herbal Shampoo",
+    price: 210,
+    originalPrice: 250,
+    image: "https://images.unsplash.com/photo-1597854586415-9cf5ef699899?q=80&w=987&auto=format&fit=crop",
+    category: "Personal Hygiene & Grooming",
+    brand: "Himalaya",
+    discount: 16
+  },
+  
+  // Amul Products
+  {
+    id: 15,
+    name: "Amul Butter",
+    price: 55,
+    originalPrice: 60,
+    image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Amul",
+    badge: "popular" as "popular",
+    discount: 8
+  },
+  {
+    id: 16,
+    name: "Amul Cheese",
+    price: 110,
+    originalPrice: 125,
+    image: "https://images.unsplash.com/photo-1587735243615-c03f25aaff15?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Amul",
+    discount: 12
+  },
+  {
+    id: 17,
+    name: "Amul Ice Cream",
+    price: 220,
+    originalPrice: 250,
+    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Amul",
+    discount: 12
+  },
+  
+  // Mamaearth Products
+  {
+    id: 18,
+    name: "Mamaearth Ubtan Face Wash",
+    price: 249,
+    originalPrice: 299,
+    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
+    category: "Skincare",
+    brand: "Mamaearth",
     badge: "new" as "new",
-    discount: 22
+    discount: 17
+  },
+  {
+    id: 19,
+    name: "Mamaearth Vitamin C Face Serum",
+    price: 599,
+    originalPrice: 699,
+    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
+    category: "Skincare",
+    brand: "Mamaearth",
+    badge: "new" as "new",
+    discount: 14
+  },
+  {
+    id: 20,
+    name: "Mamaearth Tea Tree Shampoo",
+    price: 349,
+    originalPrice: 399,
+    image: "https://images.unsplash.com/photo-1597854586415-9cf5ef699899?q=80&w=987&auto=format&fit=crop",
+    category: "Personal Hygiene & Grooming",
+    brand: "Mamaearth",
+    discount: 13
+  },
+  
+  // Additional Products for Cleaning & Household
+  {
+    id: 21,
+    name: "Patanjali Floor Cleaner",
+    price: 140,
+    originalPrice: 170,
+    image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?q=80&w=987&auto=format&fit=crop",
+    category: "Cleaning & Household",
+    brand: "Patanjali",
+    discount: 18
+  },
+  {
+    id: 22,
+    name: "Dabur Sanitize Surface Cleaner",
+    price: 180,
+    originalPrice: 210,
+    image: "https://images.unsplash.com/photo-1584267385494-9fdd9a71ad75?q=80&w=987&auto=format&fit=crop",
+    category: "Cleaning & Household",
+    brand: "Dabur",
+    discount: 14
+  },
+  {
+    id: 23,
+    name: "Mamaearth Plant-Based Detergent",
+    price: 349,
+    originalPrice: 399,
+    image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?q=80&w=987&auto=format&fit=crop",
+    category: "Cleaning & Household",
+    brand: "Mamaearth",
+    badge: "new" as "new",
+    discount: 13
+  },
+  {
+    id: 24,
+    name: "Himalaya Hand Sanitizer",
+    price: 99,
+    originalPrice: 120,
+    image: "https://images.unsplash.com/photo-1584267385494-9fdd9a71ad75?q=80&w=987&auto=format&fit=crop",
+    category: "Cleaning & Household",
+    brand: "Himalaya",
+    discount: 18
   }
 ];
 
@@ -128,9 +281,13 @@ const Products: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("default");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedBrand, setSelectedBrand] = useState("all");
 
   // Get unique categories
   const categories = ["all", ...Array.from(new Set(PRODUCTS.map(p => p.category)))];
+  
+  // Get unique brands
+  const brands = ["all", ...Array.from(new Set(PRODUCTS.map(p => p.brand)))];
 
   // Filter and sort products
   useEffect(() => {
@@ -140,13 +297,19 @@ const Products: React.FC = () => {
     if (searchTerm) {
       result = result.filter(p => 
         p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        p.category.toLowerCase().includes(searchTerm.toLowerCase())
+        p.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.brand.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     
     // Apply category filter
     if (selectedCategory !== "all") {
       result = result.filter(p => p.category === selectedCategory);
+    }
+    
+    // Apply brand filter
+    if (selectedBrand !== "all") {
+      result = result.filter(p => p.brand === selectedBrand);
     }
     
     // Apply sorting
@@ -175,7 +338,7 @@ const Products: React.FC = () => {
     }
     
     setFilteredProducts(result);
-  }, [searchTerm, sortOption, selectedCategory]);
+  }, [searchTerm, sortOption, selectedCategory, selectedBrand]);
   
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -209,13 +372,26 @@ const Products: React.FC = () => {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-[160px]">
+                <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
                   {categories.map((category) => (
                     <SelectItem key={category} value={category}>
                       {category === "all" ? "All Categories" : category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              
+              <Select value={selectedBrand} onValueChange={setSelectedBrand}>
+                <SelectTrigger className="w-[160px]">
+                  <SelectValue placeholder="Brand" />
+                </SelectTrigger>
+                <SelectContent>
+                  {brands.map((brand) => (
+                    <SelectItem key={brand} value={brand}>
+                      {brand === "all" ? "All Brands" : brand}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -260,6 +436,7 @@ const Products: React.FC = () => {
               <Button onClick={() => {
                 setSearchTerm("");
                 setSelectedCategory("all");
+                setSelectedBrand("all");
                 setSortOption("default");
               }}>
                 Clear Filters

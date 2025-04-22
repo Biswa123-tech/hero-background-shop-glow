@@ -17,7 +17,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ id, name, image, count }) =
       transition={{ duration: 0.3 }}
     >
       <Link 
-        to={`/categories/${id}`}
+        to={`/products?category=${encodeURIComponent(name)}`}
         className="group block relative h-40 md:h-48 rounded-lg overflow-hidden"
       >
         <img 

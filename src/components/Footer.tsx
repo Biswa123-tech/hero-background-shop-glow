@@ -76,11 +76,6 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/wishlist" className="text-gray-500 hover:text-primary">
-                  Wishlist
-                </Link>
-              </li>
-              <li>
                 <Link to="/cart" className="text-gray-500 hover:text-primary">
                   Shopping Cart
                 </Link>
@@ -94,7 +89,7 @@ const Footer: React.FC = () => {
               <li className="flex items-start">
                 <MapPin size={18} className="mr-2 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-gray-500">
-                  123 Shopping Street, Market City, 10001
+                  Satgaon Nowapara, Mili Juli Path, Panjabari, Guwahati, Assam 781037
                 </span>
               </li>
               <li className="flex items-center">

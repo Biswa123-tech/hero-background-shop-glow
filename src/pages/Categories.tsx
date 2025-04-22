@@ -4,43 +4,31 @@ import Layout from "@/components/Layout";
 import CategoryCard from "@/components/CategoryCard";
 import { motion } from "framer-motion";
 
-// Display only daily essentials categories
+// Updated categories for Indian FMCG products
 const CATEGORIES = [
   {
     id: 1,
-    name: "Brushes",
+    name: "Personal Hygiene & Grooming",
     image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?q=80&w=1000&auto=format&fit=crop",
     count: 10,
   },
   {
     id: 2,
-    name: "Cream",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=989&auto=format&fit=crop",
+    name: "Skincare",
+    image: "https://images.unsplash.com/photo-1620916566886-f294219736cd?q=80&w=987&auto=format&fit=crop",
     count: 7,
   },
   {
     id: 3,
-    name: "Serum",
-    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=828&auto=format&fit=crop",
-    count: 5,
+    name: "Food & Beverages",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1172&auto=format&fit=crop",
+    count: 9,
   },
   {
     id: 4,
-    name: "Oil",
-    image: "https://images.unsplash.com/photo-1481931098730-318b6f776db0?q=80&w=987&auto=format&fit=crop",
-    count: 8,
-  },
-  {
-    id: 5,
-    name: "Eatables",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1172&auto=format&fit=crop",
-    count: 12,
-  },
-  {
-    id: 6,
-    name: "Soap",
-    image: "https://images.unsplash.com/photo-1518673743714-89347f83291b?q=80&w=987&auto=format&fit=crop",
-    count: 6,
+    name: "Cleaning & Household",
+    image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?q=80&w=987&auto=format&fit=crop",
+    count: 4,
   }
 ];
 
@@ -53,7 +41,7 @@ const CategoriesPage: React.FC = () => {
           <p className="text-gray-600">Browse our product categories to find exactly what you're looking for.</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {CATEGORIES.map((category) => (
             <motion.div
               key={category.id}

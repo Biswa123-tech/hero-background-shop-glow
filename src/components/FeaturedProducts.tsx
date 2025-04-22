@@ -5,47 +5,50 @@ import ProductCard from "./ProductCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-// Show daily essentials, prices in ₹
+// Show daily essentials from Indian FMCG brands, prices in ₹
 const PRODUCTS = [
   {
     id: 1,
-    name: "Tooth Brush",
-    price: 40,
-    originalPrice: 60,
+    name: "Patanjali Dant Kanti Toothpaste",
+    price: 100,
+    originalPrice: 120,
     image: "https://images.unsplash.com/photo-1559163525-fd82e738ad5b?q=80&w=1170&auto=format&fit=crop",
-    category: "Brushes",
+    category: "Personal Hygiene & Grooming",
+    brand: "Patanjali",
     badge: "sale" as "sale",
-    discount: 33
+    discount: 17
   },
   {
-    id: 2,
-    name: "Face Cream",
-    price: 399,
-    originalPrice: 499,
-    image: "https://images.unsplash.com/photo-1620916566886-f294219736cd?q=80&w=987&auto=format&fit=crop",
-    category: "Cream",
-    badge: "new" as "new",
-    discount: 20
+    id: 7,
+    name: "Nescafé Classic Coffee",
+    price: 290,
+    originalPrice: 325,
+    image: "https://images.unsplash.com/photo-1550611087-ee349c7ffc98?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Nestlé",
+    discount: 11
   },
   {
-    id: 3,
-    name: "Vitamin C Serum",
-    price: 799,
-    originalPrice: 999,
+    id: 12,
+    name: "Himalaya Neem Face Wash",
+    price: 180,
+    originalPrice: 215,
     image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
-    category: "Serum",
+    category: "Skincare",
+    brand: "Himalaya",
     badge: "sale" as "sale",
-    discount: 20
+    discount: 16
   },
   {
-    id: 4,
-    name: "Coconut Oil",
-    price: 199,
-    originalPrice: 249,
-    image: "https://images.unsplash.com/photo-1528483667811-f9838f3df371?q=80&w=974&auto=format&fit=crop",
-    category: "Oil",
+    id: 15,
+    name: "Amul Butter",
+    price: 55,
+    originalPrice: 60,
+    image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?q=80&w=987&auto=format&fit=crop",
+    category: "Food & Beverages",
+    brand: "Amul",
     badge: "popular" as "popular",
-    discount: 20
+    discount: 8
   },
 ];
 
@@ -70,7 +73,7 @@ const FeaturedProducts: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-gray-600 max-w-2xl mx-auto"
           >
-            Check out our most popular daily essentials.
+            Check out our most popular daily essentials from top Indian brands.
           </motion.p>
         </div>
 

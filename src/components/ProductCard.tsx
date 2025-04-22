@@ -14,6 +14,7 @@ export interface ProductCardProps {
   originalPrice?: number;
   image: string;
   category: string;
+  brand?: string;
   badge?: "sale" | "new" | "popular";
   discount?: number;
 }
@@ -25,6 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   originalPrice,
   image,
   category,
+  brand,
   badge,
   discount,
 }) => {
@@ -62,6 +64,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         originalPrice,
         image,
         category,
+        brand,
         quantity: 1,
       });
     }
@@ -130,8 +133,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
       </div>
       
       <div className="flex-1 p-4 flex flex-col">
-        <div className="mb-1">
+        <div className="mb-1 flex justify-between">
           <span className="text-xs text-gray-500">{category}</span>
+          {brand && <span className="text-xs font-medium text-primary">{brand}</span>}
         </div>
         <Link to={`/products/${id}`} className="block mb-2">
           <h3 className="font-medium text-gray-900 hover:text-primary transition-colors">
