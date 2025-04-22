@@ -7,7 +7,7 @@ const features = [
   {
     id: 1,
     title: "Free Shipping",
-    description: "Free shipping on all orders over $50",
+    description: "Free shipping on all orders over ₹500",
     icon: Truck,
   },
   {
@@ -19,7 +19,7 @@ const features = [
   {
     id: 3,
     title: "Easy Returns",
-    description: "30-day easy return policy",
+    description: "10-day easy return policy",
     icon: RefreshCw,
   },
   {
