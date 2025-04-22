@@ -4,63 +4,44 @@ import Layout from "@/components/Layout";
 import CategoryCard from "@/components/CategoryCard";
 import { motion } from "framer-motion";
 
-// Using the same categories data as in Categories component
+// Display only daily essentials categories
 const CATEGORIES = [
   {
     id: 1,
-    name: "Electronics",
-    image: "https://images.unsplash.com/photo-1593344484594-6e7bf5de682d?q=80&w=1015&auto=format&fit=crop",
-    count: 42,
+    name: "Brushes",
+    image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?q=80&w=1000&auto=format&fit=crop",
+    count: 10,
   },
   {
     id: 2,
-    name: "Kitchen",
-    image: "https://images.unsplash.com/photo-1556911220-bda9f7b24446?q=80&w=1000&auto=format&fit=crop",
-    count: 31,
+    name: "Cream",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=989&auto=format&fit=crop",
+    count: 7,
   },
   {
     id: 3,
-    name: "Home Decor",
-    image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?q=80&w=1074&auto=format&fit=crop",
-    count: 56,
+    name: "Serum",
+    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=828&auto=format&fit=crop",
+    count: 5,
   },
   {
     id: 4,
-    name: "Accessories",
-    image: "https://images.unsplash.com/photo-1571516111531-322dad13ce47?q=80&w=1170&auto=format&fit=crop",
-    count: 28,
+    name: "Oil",
+    image: "https://images.unsplash.com/photo-1481931098730-318b6f776db0?q=80&w=987&auto=format&fit=crop",
+    count: 8,
   },
   {
     id: 5,
-    name: "Stationery",
-    image: "https://images.unsplash.com/photo-1568205631766-1a821ee1323e?q=80&w=1170&auto=format&fit=crop",
-    count: 18,
+    name: "Eatables",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1172&auto=format&fit=crop",
+    count: 12,
   },
   {
     id: 6,
-    name: "Fashion",
-    image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1170&auto=format&fit=crop",
-    count: 63,
-  },
-  // Additional categories
-  {
-    id: 7,
-    name: "Fitness",
-    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1170&auto=format&fit=crop",
-    count: 24,
-  },
-  {
-    id: 8,
-    name: "Beauty",
-    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1000&auto=format&fit=crop",
-    count: 37,
-  },
-  {
-    id: 9,
-    name: "Pets",
-    image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1064&auto=format&fit=crop",
-    count: 19,
-  },
+    name: "Soap",
+    image: "https://images.unsplash.com/photo-1518673743714-89347f83291b?q=80&w=987&auto=format&fit=crop",
+    count: 6,
+  }
 ];
 
 const CategoriesPage: React.FC = () => {

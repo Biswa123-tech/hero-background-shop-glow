@@ -11,7 +11,6 @@ const Footer: React.FC = () => {
           <div>
             <Link to="/" className="inline-block mb-4">
               <span className="text-xl font-bold text-primary">MessBuy</span>
-              <span className="text-xl font-light">Essentials</span>
             </Link>
             <p className="text-gray-600 mb-4">
               Your one-stop shop for quality essentials at affordable prices.
@@ -97,7 +96,7 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <Phone size={18} className="mr-2 text-primary" />
-                <span className="text-gray-500">(123) 456-7890</span>
+                <span className="text-gray-500">+91 99999 12345</span>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="mr-2 text-primary" />
@@ -110,7 +109,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-200 mt-8 pt-8">
           <div className="flex flex-col md:flex-row md:justify-between text-center md:text-left">
             <p className="text-sm text-gray-500">
-              &copy; {new Date().getFullYear()} MessBuy Essentials. All rights reserved.
+              &copy; {new Date().getFullYear()} MessBuy. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0 flex space-x-4 justify-center md:justify-end">
               <Link to="/privacy" className="text-sm text-gray-500 hover:text-primary">

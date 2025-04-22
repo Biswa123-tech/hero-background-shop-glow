@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 
-interface ProductCardProps {
+export interface ProductCardProps {
   id: number;
   name: string;
   price: number;
@@ -68,12 +68,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {name}
           </h3>
         </Link>
+        <div className="text-xs text-green-600 mb-1">Free Shipping</div>
         <div className="mt-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-primary">${price.toFixed(2)}</span>
+            <span className="font-semibold text-primary">₹{price.toLocaleString("en-IN")}</span>
             {originalPrice && (
               <span className="text-sm text-gray-500 line-through">
-                ${originalPrice.toFixed(2)}
+                ₹{originalPrice.toLocaleString("en-IN")}
               </span>
             )}
           </div>
@@ -81,8 +82,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
             variant="ghost"
             size="icon"
             className="h-8 w-8 rounded-full bg-gray-100 hover:bg-primary hover:text-white"
+            asChild
           >
-            <ShoppingCart size={16} />
+            <Link to={`/products/${id}`}>
+              <ShoppingCart size={16} />
+            </Link>
           </Button>
         </div>
       </div>

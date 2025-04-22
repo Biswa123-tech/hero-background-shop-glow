@@ -22,7 +22,6 @@ const Navbar: React.FC = () => {
             </Button>
             <Link to="/" className="flex items-center">
               <span className="text-xl font-bold text-primary">MessBuy</span>
-              <span className="text-xl font-light">Essentials</span>
             </Link>
           </div>
           
@@ -51,11 +50,18 @@ const Navbar: React.FC = () => {
             <Button variant="ghost" size="icon">
               <User size={20} />
             </Button>
-            <Button variant="ghost" size="icon" className="relative">
-              <ShoppingCart size={20} />
-              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-white">
-                3
-              </span>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative"
+              asChild
+            >
+              <Link to="/cart">
+                <ShoppingCart size={20} />
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-white">
+                  0
+                </span>
+              </Link>
             </Button>
           </div>
         </div>
@@ -99,6 +105,13 @@ const Navbar: React.FC = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
+            </Link>
+            <Link 
+              to="/cart"
+              className="block px-3 py-2 text-sm font-medium hover:bg-primary/10 rounded-md"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Cart
             </Link>
           </div>
         </div>
