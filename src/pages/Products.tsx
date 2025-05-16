@@ -7,51 +7,18 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-// Daily essentials from Indian FMCG brands in Rupees
+// Daily essentials from Indian FMCG brands in Rupees with updated categories
 const PRODUCTS = [
-  // Patanjali Products
+  // Daily Essentials
   {
     id: 1,
     name: "Patanjali Dant Kanti Toothpaste",
     price: 100,
     originalPrice: 120,
     image: "https://images.unsplash.com/photo-1559163525-fd82e738ad5b?q=80&w=1170&auto=format&fit=crop",
-    category: "Personal Hygiene & Grooming",
+    category: "Daily Essentials",
     brand: "Patanjali",
     badge: "sale" as "sale",
-    discount: 17
-  },
-  {
-    id: 2,
-    name: "Patanjali Kesh Kanti Hair Oil",
-    price: 130,
-    originalPrice: 150,
-    image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=987&auto=format&fit=crop",
-    category: "Personal Hygiene & Grooming",
-    brand: "Patanjali",
-    discount: 13
-  },
-  {
-    id: 3,
-    name: "Patanjali Aloe Vera Gel",
-    price: 180,
-    originalPrice: 220,
-    image: "https://images.unsplash.com/photo-1620916566886-f294219736cd?q=80&w=987&auto=format&fit=crop",
-    category: "Skincare",
-    brand: "Patanjali",
-    badge: "popular" as "popular",
-    discount: 18
-  },
-  
-  // Dabur Products
-  {
-    id: 4,
-    name: "Dabur Amla Hair Oil",
-    price: 175,
-    originalPrice: 210,
-    image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=987&auto=format&fit=crop",
-    category: "Personal Hygiene & Grooming",
-    brand: "Dabur",
     discount: 17
   },
   {
@@ -60,11 +27,143 @@ const PRODUCTS = [
     price: 99,
     originalPrice: 120,
     image: "https://images.unsplash.com/photo-1559163525-fd82e738ad5b?q=80&w=1170&auto=format&fit=crop",
-    category: "Personal Hygiene & Grooming",
+    category: "Daily Essentials",
     brand: "Dabur",
     badge: "sale" as "sale",
     discount: 18
   },
+  {
+    id: 25,
+    name: "Colgate MaxFresh Toothbrush",
+    price: 40,
+    originalPrice: 50,
+    image: "https://images.unsplash.com/photo-1559163525-fd82e738ad5b?q=80&w=1170&auto=format&fit=crop",
+    category: "Daily Essentials",
+    brand: "Colgate",
+    discount: 20
+  },
+  
+  // Shampoo & Hair Care
+  {
+    id: 2,
+    name: "Patanjali Kesh Kanti Hair Oil",
+    price: 130,
+    originalPrice: 150,
+    image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=987&auto=format&fit=crop",
+    category: "Shampoo & Hair Care",
+    brand: "Patanjali",
+    discount: 13
+  },
+  {
+    id: 4,
+    name: "Dabur Amla Hair Oil",
+    price: 175,
+    originalPrice: 210,
+    image: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=987&auto=format&fit=crop",
+    category: "Shampoo & Hair Care",
+    brand: "Dabur",
+    discount: 17
+  },
+  {
+    id: 14,
+    name: "Himalaya Herbal Shampoo",
+    price: 210,
+    originalPrice: 250,
+    image: "https://images.unsplash.com/photo-1597854586415-9cf5ef699899?q=80&w=987&auto=format&fit=crop",
+    category: "Shampoo & Hair Care",
+    brand: "Himalaya",
+    discount: 16
+  },
+  {
+    id: 20,
+    name: "Mamaearth Tea Tree Shampoo",
+    price: 349,
+    originalPrice: 399,
+    image: "https://images.unsplash.com/photo-1597854586415-9cf5ef699899?q=80&w=987&auto=format&fit=crop",
+    category: "Shampoo & Hair Care",
+    brand: "Mamaearth",
+    discount: 13
+  },
+  
+  // Face Wash & Skincare
+  {
+    id: 3,
+    name: "Patanjali Aloe Vera Gel",
+    price: 180,
+    originalPrice: 220,
+    image: "https://images.unsplash.com/photo-1620916566886-f294219736cd?q=80&w=987&auto=format&fit=crop",
+    category: "Face Wash & Skincare",
+    brand: "Patanjali",
+    badge: "popular" as "popular",
+    discount: 18
+  },
+  {
+    id: 12,
+    name: "Himalaya Neem Face Wash",
+    price: 180,
+    originalPrice: 215,
+    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
+    category: "Face Wash & Skincare",
+    brand: "Himalaya",
+    badge: "sale" as "sale",
+    discount: 16
+  },
+  {
+    id: 13,
+    name: "Himalaya Face Scrub",
+    price: 190,
+    originalPrice: 225,
+    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
+    category: "Face Wash & Skincare",
+    brand: "Himalaya",
+    discount: 16
+  },
+  {
+    id: 18,
+    name: "Mamaearth Ubtan Face Wash",
+    price: 249,
+    originalPrice: 299,
+    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
+    category: "Face Wash & Skincare",
+    brand: "Mamaearth",
+    badge: "new" as "new",
+    discount: 17
+  },
+  {
+    id: 19,
+    name: "Mamaearth Vitamin C Face Serum",
+    price: 599,
+    originalPrice: 699,
+    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
+    category: "Face Wash & Skincare",
+    brand: "Mamaearth",
+    badge: "new" as "new",
+    discount: 14
+  },
+  
+  // Oils & Cooking (note: some products appear in multiple categories)
+  {
+    id: 26,
+    name: "Fortune Mustard Oil",
+    price: 220,
+    originalPrice: 250,
+    image: "https://images.unsplash.com/photo-1588687650834-368975d3c3d5?q=80&w=987&auto=format&fit=crop",
+    category: "Oils & Cooking",
+    brand: "Fortune",
+    discount: 12
+  },
+  {
+    id: 27,
+    name: "Patanjali Cow Ghee",
+    price: 560,
+    originalPrice: 620,
+    image: "https://images.unsplash.com/photo-1588687650834-368975d3c3d5?q=80&w=987&auto=format&fit=crop",
+    category: "Oils & Cooking",
+    brand: "Patanjali",
+    discount: 10
+  },
+  
+  // Food & Beverages
   {
     id: 6,
     name: "Dabur Honey",
@@ -75,8 +174,6 @@ const PRODUCTS = [
     brand: "Dabur",
     discount: 12
   },
-  
-  // Nestlé Products
   {
     id: 7,
     name: "Nescafé Classic Coffee",
@@ -108,8 +205,6 @@ const PRODUCTS = [
     brand: "Nestlé",
     discount: 20
   },
-  
-  // Parle Products
   {
     id: 10,
     name: "Parle-G Biscuits",
@@ -131,41 +226,6 @@ const PRODUCTS = [
     brand: "Parle",
     discount: 14
   },
-  
-  // Himalaya Products
-  {
-    id: 12,
-    name: "Himalaya Neem Face Wash",
-    price: 180,
-    originalPrice: 215,
-    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
-    category: "Skincare",
-    brand: "Himalaya",
-    badge: "sale" as "sale",
-    discount: 16
-  },
-  {
-    id: 13,
-    name: "Himalaya Face Scrub",
-    price: 190,
-    originalPrice: 225,
-    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
-    category: "Skincare",
-    brand: "Himalaya",
-    discount: 16
-  },
-  {
-    id: 14,
-    name: "Himalaya Herbal Shampoo",
-    price: 210,
-    originalPrice: 250,
-    image: "https://images.unsplash.com/photo-1597854586415-9cf5ef699899?q=80&w=987&auto=format&fit=crop",
-    category: "Personal Hygiene & Grooming",
-    brand: "Himalaya",
-    discount: 16
-  },
-  
-  // Amul Products
   {
     id: 15,
     name: "Amul Butter",
@@ -198,41 +258,7 @@ const PRODUCTS = [
     discount: 12
   },
   
-  // Mamaearth Products
-  {
-    id: 18,
-    name: "Mamaearth Ubtan Face Wash",
-    price: 249,
-    originalPrice: 299,
-    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
-    category: "Skincare",
-    brand: "Mamaearth",
-    badge: "new" as "new",
-    discount: 17
-  },
-  {
-    id: 19,
-    name: "Mamaearth Vitamin C Face Serum",
-    price: 599,
-    originalPrice: 699,
-    image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
-    category: "Skincare",
-    brand: "Mamaearth",
-    badge: "new" as "new",
-    discount: 14
-  },
-  {
-    id: 20,
-    name: "Mamaearth Tea Tree Shampoo",
-    price: 349,
-    originalPrice: 399,
-    image: "https://images.unsplash.com/photo-1597854586415-9cf5ef699899?q=80&w=987&auto=format&fit=crop",
-    category: "Personal Hygiene & Grooming",
-    brand: "Mamaearth",
-    discount: 13
-  },
-  
-  // Additional Products for Cleaning & Household
+  // Cleaning & Household
   {
     id: 21,
     name: "Patanjali Floor Cleaner",
@@ -273,7 +299,29 @@ const PRODUCTS = [
     category: "Cleaning & Household",
     brand: "Himalaya",
     discount: 18
-  }
+  },
+  
+  // Tablets & Supplements
+  {
+    id: 28,
+    name: "Himalaya Ashwagandha Tablets",
+    price: 180,
+    originalPrice: 220,
+    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=987&auto=format&fit=crop",
+    category: "Tablets & Supplements",
+    brand: "Himalaya",
+    discount: 18
+  },
+  {
+    id: 29,
+    name: "Patanjali Multivitamin Tablets",
+    price: 320,
+    originalPrice: 380,
+    image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=987&auto=format&fit=crop",
+    category: "Tablets & Supplements",
+    brand: "Patanjali",
+    discount: 16
+  },
 ];
 
 const Products: React.FC = () => {

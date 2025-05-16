@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
-// Simulate fetching from inventory (update as needed)
+// Products data (imported from Products page)
 const PRODUCTS = [
   {
     id: 1,
@@ -15,7 +15,7 @@ const PRODUCTS = [
     price: 100,
     originalPrice: 120,
     image: "https://images.unsplash.com/photo-1559163525-fd82e738ad5b?q=80&w=1170&auto=format&fit=crop",
-    category: "Personal Hygiene & Grooming",
+    category: "Daily Essentials",
     description: "Ayurvedic toothpaste for healthier gums and teeth.",
     discount: 17
   },
@@ -25,7 +25,7 @@ const PRODUCTS = [
     price: 180,
     originalPrice: 215,
     image: "https://images.unsplash.com/photo-1608248597279-f99d160beba3?q=80&w=1974&auto=format&fit=crop",
-    category: "Skincare",
+    category: "Face Wash & Skincare",
     description: "Purifies skin, removes impurities, prevents pimples.",
     discount: 16
   },
@@ -49,20 +49,12 @@ const PRODUCTS = [
     description: "Quick delicious instant noodles from Nestlé.",
     discount: 17
   }
-]; // Add more/sample as needed
-
-const EXTERNAL_PRODUCT = {
-  name: "",
-  price: 499,
-  image: "https://raw.githubusercontent.com/lovable-ai/icons/main/generic-product.svg",
-  tag: "External"
-};
+];
 
 const Hero: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [isExternal, setIsExternal] = useState(false);
-  const [selectedSuggestion, setSelectedSuggestion] = useState<null | { id?: number; name: string; external?: boolean }>(null);
+  const [selectedSuggestion, setSelectedSuggestion] = useState<null | { id?: number; name: string }>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
@@ -70,56 +62,22 @@ const Hero: React.FC = () => {
   let filtered = [];
   if (searchValue.length > 0) {
     filtered = PRODUCTS.filter(product => 
-      product.name.toLowerCase().includes(searchValue.toLowerCase())
+      product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchValue.toLowerCase())
     );
-    if (filtered.length === 0) {
-      filtered = [{
-        name: searchValue,
-        external: true
-      }];
-    }
   }
 
-  // Blur handler to hide dropdown a bit after blur (to allow click events)
+  // Blur handler to hide dropdown after blur (with slight delay to allow click events)
   const handleBlur = () => setTimeout(() => setShowSuggestions(false), 150);
 
   // When clicking a suggestion
   const handleSuggestionClick = (suggestion: any) => {
-    if (suggestion.external) {
-      setIsExternal(true);
-      setSelectedSuggestion(suggestion);
-      setShowSuggestions(false);
-    } else {
-      navigate(`/products/${suggestion.id}`);
-      setSearchValue("");
-      setShowSuggestions(false);
-    }
+    navigate(`/products/${suggestion.id}`);
+    setSearchValue("");
+    setShowSuggestions(false);
   };
 
-  // Modal for external product
-  const ExternalModal = () => (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="bg-white rounded-xl p-6 max-w-xs w-full shadow-lg text-center">
-        <img 
-          src={EXTERNAL_PRODUCT.image} 
-          alt="Generic Product" 
-          className="mx-auto w-16 h-16 object-contain mb-3"
-        />
-        <h3 className="text-lg font-semibold mb-2">External Product</h3>
-        <p className="text-gray-600 mb-3">
-          This is an external product.<br />Not available for direct purchase.
-        </p>
-        <Button 
-          className="mt-2 rounded-full px-6 bg-primary text-white"
-          onClick={() => setIsExternal(false)}
-        >
-          Close
-        </Button>
-      </div>
-    </div>
-  );
-
-  // Keyboard navigation to suggestions
+  // Keyboard navigation for suggestions
   useEffect(() => {
     const keyHandler = (e: KeyboardEvent) => {
       if (!showSuggestions || !filtered.length) return;
@@ -127,6 +85,7 @@ const Hero: React.FC = () => {
         e.preventDefault();
         setSelectedSuggestion((prev) => {
           let idx = filtered.findIndex(s => prev && (s.id ?? s.name) === (prev.id ?? prev.name));
+          if (idx === -1) idx = 0;
           if (e.key === "ArrowDown") idx = (idx + 1) % filtered.length;
           else if (e.key === "ArrowUp") idx = (idx - 1 + filtered.length) % filtered.length;
           return filtered[idx];
@@ -211,27 +170,8 @@ const Hero: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                 >
-                  {filtered.map((suggestion, idx) =>
-                    suggestion.external ? (
-                      <li
-                        key="external"
-                        onMouseDown={() => handleSuggestionClick(suggestion)}
-                        className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-50 rounded-xl"
-                      >
-                        <img 
-                          src={EXTERNAL_PRODUCT.image} 
-                          alt="external"
-                          className="w-10 h-10 object-contain rounded-lg border border-gray-200"
-                        />
-                        <div>
-                          <div className="font-medium">{searchValue}</div>
-                          <span className="text-xs text-gray-500">
-                            This product may be available on another site — <span className="font-semibold text-green-700">₹499</span>
-                          </span>
-                          <span className="ml-2 px-2 py-0.5 rounded-full bg-gray-200 text-xs font-semibold text-gray-700 align-middle">External</span>
-                        </div>
-                      </li>
-                    ) : (
+                  {filtered.length > 0 ? (
+                    filtered.map((suggestion) => (
                       <li
                         key={suggestion.id}
                         onMouseDown={() => handleSuggestionClick(suggestion)}
@@ -249,13 +189,16 @@ const Hero: React.FC = () => {
                           </span>
                         </div>
                       </li>
-                    )
+                    ))
+                  ) : (
+                    <li className="px-4 py-6 text-center text-gray-500">
+                      No matching products found.
+                    </li>
                   )}
                 </motion.ul>
               )}
               </AnimatePresence>
             </div>
-            {isExternal && <ExternalModal />}
           </motion.div>
 
           {/* Hero Buttons */}

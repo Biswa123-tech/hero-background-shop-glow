@@ -11,8 +11,8 @@ const Index: React.FC = () => {
     <Layout>
       <Hero />
       <Features />
-      <FeaturedProducts />
       <Categories />
+      <FeaturedProducts />
     </Layout>
   );
 };
