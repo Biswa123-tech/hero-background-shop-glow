@@ -1,11 +1,12 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { toast } from "@/hooks/use-toast";
+import PlaceholderImage from "./PlaceholderImage";
 
 export interface ProductCardProps {
   id: number;
@@ -30,6 +31,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   badge,
   discount,
 }) => {
+  const [productImage, setProductImage] = useState(image);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -83,6 +88,28 @@ const ProductCard: React.FC<ProductCardProps> = ({
     ? Math.round(((originalPrice - price) / originalPrice) * 100) 
     : 0);
 
+  const handleImageUploaded = (newImageUrl: string) => {
+    setProductImage(newImageUrl);
+    setImageError(false);
+    setImageLoaded(true);
+    
+    // In a real app, you would update the product image in the database
+    toast({
+      title: "Image uploaded",
+      description: "Your product image has been updated.",
+    });
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoaded(false);
+  };
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+    setImageError(false);
+  };
+
   return (
     <motion.div 
       className="group rounded-lg border overflow-hidden bg-white h-full flex flex-col"
@@ -91,11 +118,23 @@ const ProductCard: React.FC<ProductCardProps> = ({
     >
       <div className="relative overflow-hidden">
         <Link to={`/products/${id}`} className="block">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-52 md:h-60 object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          {!imageError ? (
+            <img
+              src={productImage}
+              alt={name}
+              className={`w-full h-52 md:h-60 object-cover transition-transform duration-500 group-hover:scale-105 ${!imageLoaded ? 'hidden' : ''}`}
+              onError={handleImageError}
+              onLoad={handleImageLoad}
+            />
+          ) : null}
+          
+          {(imageError || !productImage) && (
+            <PlaceholderImage 
+              onImageUploaded={handleImageUploaded} 
+              className="w-full h-52 md:h-60"
+              alt={name}
+            />
+          )}
         </Link>
         <div className="absolute top-2 left-2">
           {badge && (
