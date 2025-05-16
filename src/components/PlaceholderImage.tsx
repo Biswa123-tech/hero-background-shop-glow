@@ -16,6 +16,7 @@ const PlaceholderImage: React.FC<PlaceholderImageProps> = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
 
   const handleClick = () => {
     if (fileInputRef.current) {
@@ -28,6 +29,7 @@ const PlaceholderImage: React.FC<PlaceholderImageProps> = ({
     if (files && files.length > 0) {
       const file = files[0];
       const imageUrl = URL.createObjectURL(file);
+      setUploadedImage(imageUrl);
       onImageUploaded(imageUrl);
       
       // In a real app, you would upload the file to a server here
@@ -37,23 +39,32 @@ const PlaceholderImage: React.FC<PlaceholderImageProps> = ({
 
   return (
     <motion.div
-      className={`flex items-center justify-center bg-gray-200 rounded-lg shadow-sm ${className}`}
-      style={{ aspectRatio: "4/3" }}
+      className={`relative ${className}`}
       onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="flex flex-col items-center p-4 text-gray-500">
-        <motion.div 
-          animate={{ scale: isHovered ? 1.1 : 1 }}
-          transition={{ duration: 0.2 }}
-        >
-          <Camera size={32} />
-        </motion.div>
-        <p className="mt-2 text-xs text-center">Click to upload image</p>
-      </div>
+      {uploadedImage ? (
+        <img 
+          src={uploadedImage} 
+          alt={alt} 
+          className="w-full h-full object-cover rounded-lg"
+        />
+      ) : (
+        <div className="flex items-center justify-center bg-gray-200 rounded-lg shadow-sm w-full h-full">
+          <div className="flex flex-col items-center p-4 text-gray-500">
+            <motion.div 
+              animate={{ scale: isHovered ? 1.1 : 1 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Camera size={32} />
+            </motion.div>
+            <p className="mt-2 text-xs text-center">Click to upload image</p>
+          </div>
+        </div>
+      )}
       <input
         type="file"
         ref={fileInputRef}

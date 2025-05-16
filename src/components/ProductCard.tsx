@@ -117,21 +117,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
     >
       <div className="relative overflow-hidden">
         <Link to={`/products/${id}`} className="block">
-          {!imageError && productImage ? (
-            <img
-              src={productImage}
-              alt={name}
-              className={`w-full h-52 md:h-60 object-cover transition-transform duration-500 group-hover:scale-105 ${!imageLoaded ? 'hidden' : ''}`}
-              onError={handleImageError}
-              onLoad={handleImageLoad}
-            />
-          ) : (
-            <PlaceholderImage 
-              onImageUploaded={handleImageUploaded} 
-              className="w-full h-52 md:h-60"
-              alt={name}
-            />
-          )}
+          <PlaceholderImage 
+            onImageUploaded={handleImageUploaded} 
+            className="w-full h-52 md:h-60"
+            alt={name}
+          />
         </Link>
         <div className="absolute top-2 left-2">
           {badge && (
