@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCart, Heart } from "lucide-react";
@@ -118,7 +117,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     >
       <div className="relative overflow-hidden">
         <Link to={`/products/${id}`} className="block">
-          {!imageError ? (
+          {!imageError && productImage ? (
             <img
               src={productImage}
               alt={name}
@@ -126,9 +125,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               onError={handleImageError}
               onLoad={handleImageLoad}
             />
-          ) : null}
-          
-          {(imageError || !productImage) && (
+          ) : (
             <PlaceholderImage 
               onImageUploaded={handleImageUploaded} 
               className="w-full h-52 md:h-60"
